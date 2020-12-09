@@ -1,0 +1,15 @@
+## Interface: 40200
+## Title: Inven Dress Room
+## Notes: 인벤 드레스 룸 - 아이템 룩 살펴보기
+## Author: Inven - InTheBlue
+## Version: 1.0
+## X-Website: http://wow.inven.co.kr
+## SavedVariables: InvenDressRoomDB
+
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\LibRaidComm-1.0\LibRaidComm-1.0.lua
+libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+libs\LibMapButton-1.1\LibMapButton-1.1.lua
+
+Core.lua

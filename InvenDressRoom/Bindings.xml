@@ -1,0 +1,8 @@
+<Bindings>
+  	<Binding name="INVENDRESSROOM_TOGGLE" header="INVENDRESSROOM">
+  		InvenDressRoom:OnClick("LeftButton")
+  	</Binding>
+	<Binding name="INVENDRESSROOM_OPTION">
+		InvenDressRoom:OnClick("RightButton")
+  	</Binding>
+</Bindings>

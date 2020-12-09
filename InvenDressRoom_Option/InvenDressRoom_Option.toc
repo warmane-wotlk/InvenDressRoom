@@ -1,0 +1,9 @@
+## Interface: 40200
+## Title: Inven Dress Room: Option
+## Notes: 인벤 드레스 룸: 옵션창 모듈
+## Dependencies: InvenDressRoom
+## LoadOnDemand: 1
+
+libs\LibBlueOption-1.0\LibBlueOption-1.0.xml
+
+Core.lua
