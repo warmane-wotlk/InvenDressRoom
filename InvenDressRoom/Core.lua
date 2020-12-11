@@ -1,5 +1,6 @@
 local addOnName = ...
-local IDR = CreateFrame("Frame", addOnName, UIParent, "ButtonFrameTemplate")
+
+local IDR = CreateFrame("Frame", addOnName, UIParent)
 IDR:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 IDR:RegisterEvent("PLAYER_LOGIN")
 IDR:Hide()
@@ -14,10 +15,10 @@ BINDING_NAME_INVENDRESSROOM_TOGGLE = "창 열기/닫기"
 BINDING_NAME_INVENDRESSROOM_OPTION = "욥션창 열기/닫기"
 SLASH_INVENDRESSROOM1 = "/idr"
 SLASH_INVENDRESSROOM2 = "/ㅑㅇㄱ"
-SLASH_INVENDRESSROOM3 = "/옷장"
-SLASH_INVENDRESSROOM4 = "/드레스룸"
-SLASH_INVENDRESSROOM5 = "/인벤옷장"
-SLASH_INVENDRESSROOM6 = "/인벤드레스룸"
+--SLASH_INVENDRESSROOM3 = "/옷장"
+--SLASH_INVENDRESSROOM4 = "/드레스룸"
+--SLASH_INVENDRESSROOM5 = "/인벤옷장"
+--SLASH_INVENDRESSROOM6 = "/인벤드레스룸"
 
 SlashCmdList["INVENDRESSROOM"] = function()
 	if IDR.itemSlots then
@@ -36,7 +37,7 @@ SlashCmdList["INVENDRESSROOM"] = function()
 	end
 end
 
-IDR.optionFrame = CreateFrame("Frame", addOnName.."OptionFrame", InterfaceOptionsFramePanelContainer)
+IDR.optionFrame = CreateFrame("Frame", addOnName.."OptionFrame")
 IDR.optionFrame:Hide()
 IDR.optionFrame.name = "인벤 드레스 룸"
 IDR.optionFrame:SetScript("OnShow", function(self)

@@ -266,7 +266,7 @@ local function setDetailItem(item)
 end
 
 function IDR:UpdateFavoriteList()
-	local offset, item = FauxScrollFrame_GetOffset(IDR.favoriteList.scroll)
+	local offset = FauxScrollFrame_GetOffset(IDR.favoriteList.scroll) or 0
 	for i, btn in ipairs(IDR.favoriteList.items) do
 		item = favoriteItems[offset + i]
 		if item then

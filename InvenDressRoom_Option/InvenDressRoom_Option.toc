@@ -1,4 +1,4 @@
-## Interface: 40200
+## Interface: 30300
 ## Title: Inven Dress Room: Option
 ## Notes: 인벤 드레스 룸: 옵션창 모듈
 ## Dependencies: InvenDressRoom

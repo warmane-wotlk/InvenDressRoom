@@ -36,8 +36,8 @@ local playerModelFileIndex = {}
 
 do
 	for i, race in ipairs(races) do
-		raceLocales[race.."Male"] = raceLocales[race].." ("..MALE..")"
-		raceLocales[race.."Female"] = raceLocales[race].." ("..FEMALE..")"
+		raceLocales[race.."Male"] = tostring(raceLocales[race]).." ("..MALE..")"
+		raceLocales[race.."Female"] = tostring(raceLocales[race]).." ("..FEMALE..")"
 		raceLocales[race] = nil
 		race = race:lower()
 		playerModelFileIndex["character\\"..race.."\\male\\"..race.."male.m2"] = (i - 1) * 2 + 1
@@ -605,7 +605,7 @@ end
 
 function IDR:UpdateDetailItems()
 	wipe(visibleItem)
-	local offset, item = FauxScrollFrame_GetOffset(IDR.detailItemScroll)
+	local offset = FauxScrollFrame_GetOffset(IDR.detailItemScroll) or 0
 	for i, btn in ipairs(IDR.detailItems) do
 		item = detailItems[offset + i]
 		if item then
@@ -628,7 +628,8 @@ function IDR:UpdateDetailItems()
 			btn.noItem = nil
 		end
 	end
-	FauxScrollFrame_Update(IDR.detailItemScroll, #detailItems, #IDR.detailItems, 17)
+	-- TODO : Sunmudang
+	--FauxScrollFrame_Update(IDR.detailItemScroll, #detailItems, #IDR.detailItems, 17)
 	IDR:HideAllDropdown()
 end
 
@@ -669,7 +670,7 @@ end
 
 function IDR:UpdateItemListMenuItems()
 	wipe(visibleItem2)
-	local offset, item = FauxScrollFrame_GetOffset(IDR.itemListMenu.scroll)
+	local offset = FauxScrollFrame_GetOffset(IDR.itemListMenu.scroll) or 0
 	for i, btn in ipairs(IDR.itemListMenu.items) do
 		item = detailItems2[offset + i]
 		if item then

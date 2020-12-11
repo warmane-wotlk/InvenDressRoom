@@ -14,7 +14,7 @@ local i, text, id
 local search, hasItemCache, visibleItem = {}, {}, {}
 local LBICR = LibStub("LibBlueItemCacheReceiver-1.0")
 
-local searchBox = CreateFrame("EditBox", IDR:GetName().."SearchBox", IDR, "SearchBoxTemplate")
+local searchBox = CreateFrame("EditBox", IDR:GetName().."SearchBox", IDR)
 searchBox:SetFrameLevel(IDR:GetFrameLevel() + 1)
 searchBox:SetSize(0, 20)
 searchBox:SetPoint("TOPRIGHT", -8, -33)
@@ -95,7 +95,7 @@ searchBox:SetScript("OnHide", clearSearchBox)
 
 function IDR:UpdateSearchItems()
 	wipe(visibleItem)
-	local offset, item = FauxScrollFrame_GetOffset(IDR.searchItemList.scroll)
+	local offset = FauxScrollFrame_GetOffset(IDR.searchItemList.scroll) or 0
 	for i, btn in ipairs(IDR.searchItemList.items) do
 		item = search[offset + i]
 		if item then

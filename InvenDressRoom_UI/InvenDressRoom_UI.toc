@@ -1,4 +1,4 @@
-## Interface: 40200
+## Interface: 30300
 ## Title: Inven Dress Room: UI
 ## Notes: 인벤 드레스 룸: 창 모듈
 ## SavedVariables: InvenDressRoomUIDB
