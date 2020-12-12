@@ -1,6 +1,10 @@
 local addOnName = ...
 
-local IDR = CreateFrame("Frame", addOnName, UIParent)
+-- Load new template for wow client 6.0.2
+LoadAddOn("WOW_V6UI")
+
+local IDR = CreateFrame("Frame", addOnName, UIParent, "ButtonFrameTemplate")
+
 IDR:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 IDR:RegisterEvent("PLAYER_LOGIN")
 IDR:Hide()
@@ -15,10 +19,10 @@ BINDING_NAME_INVENDRESSROOM_TOGGLE = "창 열기/닫기"
 BINDING_NAME_INVENDRESSROOM_OPTION = "욥션창 열기/닫기"
 SLASH_INVENDRESSROOM1 = "/idr"
 SLASH_INVENDRESSROOM2 = "/ㅑㅇㄱ"
---SLASH_INVENDRESSROOM3 = "/옷장"
---SLASH_INVENDRESSROOM4 = "/드레스룸"
---SLASH_INVENDRESSROOM5 = "/인벤옷장"
---SLASH_INVENDRESSROOM6 = "/인벤드레스룸"
+SLASH_INVENDRESSROOM3 = "/옷장"
+SLASH_INVENDRESSROOM4 = "/드레스룸"
+SLASH_INVENDRESSROOM5 = "/인벤옷장"
+SLASH_INVENDRESSROOM6 = "/인벤드레스룸"
 
 SlashCmdList["INVENDRESSROOM"] = function()
 	if IDR.itemSlots then
@@ -68,7 +72,7 @@ function IDR:PLAYER_LOGIN()
 	if not self.db.currentItems.modelRace then
 		self.db.currentItems.modelRace = self.defaultModelRace
 	end
-	self.icon = "Interface\\Icons\\INV_Arcane_Orb"
+	self.icon = "Interface\\Icons\\INV_Chest_Cloth_65"
 	LibStub("LibMapButton-1.1"):CreateButton(self, addOnName.."MapButton", self.icon, 1.47, InvenDressRoomDB.minimapButton)
 	LibStub("LibDataBroker-1.1"):NewDataObject(addOnName, {
 		type = "launcher",
@@ -99,8 +103,8 @@ function IDR:OnTooltip(tooltip)
 	tooltip = tooltip or GameTooltip
 	tooltip:AddLine("Inven Dress Room v"..GetAddOnMetadata(addOnName, "Version"))
 	tooltip:AddLine(GetAddOnMetadata(addOnName, "X-Website"), 1, 1, 1)
-	tooltip:AddLine("좌클릭: 창 열기/닫기", 1, 1, 0)
-	tooltip:AddLine("우클릭: 창 열기/닫기", 1, 1, 0)
+	tooltip:AddLine("좌클릭: 드레스룸 열기/닫기", 1, 1, 0)
+	tooltip:AddLine("우클릭: 옵션창 열기/닫기", 1, 1, 0)
 end
 
 local staticPopups = {}

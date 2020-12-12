@@ -330,17 +330,20 @@ function IDR:SetPlayerModel()
 		if self.db.currentItems[slot] and GetItemIcon(self.db.currentItems[slot]) and not GetAddOnMetadata(addOnName, "X-NoTransmogrifyItem-"..self.db.currentItems[slot]) then
 			btn.item = self.db.currentItems[slot]
 			btn.enchant = self.db.currentItems[slot.."Enchant"]
-			btn.icon:SetTexture(GetItemIcon(btn.item))
-			btn.icon:SetVertexColor(0.02, 0.02, 1)
-			btn.noItem = true
-			if slot == "HeadSlot" then
-				btn.tryOn = self.db.showHelm
-			elseif slot == "BackSlot" then
-				btn.tryOn = self.db.showCloak
-			elseif slot == "RangedSlot" then
-				btn.tryOn = self.db.showWeapon == 2
-			elseif slot ~= "MainHandSlot" and slot ~= "SecondaryHandSlot" then
-				btn.tryOn = true
+			local itemIcon = GetItemIcon(btn.item)
+   			if itemIcon then
+				btn.icon:SetTexture(itemIcon)
+				btn.icon:SetVertexColor(0.02, 0.02, 1)
+				btn.noItem = true
+				if slot == "HeadSlot" then
+					btn.tryOn = self.db.showHelm
+				elseif slot == "BackSlot" then
+					btn.tryOn = self.db.showCloak
+				elseif slot == "RangedSlot" then
+					btn.tryOn = self.db.showWeapon == 2
+				elseif slot ~= "MainHandSlot" and slot ~= "SecondaryHandSlot" then
+					btn.tryOn = true
+				end
 			end
 		else
 			btn.item, btn.enchant, btn.noItem, btn.tryOn = nil
@@ -495,8 +498,8 @@ local function modelPreview(item)
 	else
 		IDR.modelTooltip.model:TryOn(item)
 	end
-	IDR.modelTooltip.model:RefreshCamera()
-	IDR.modelTooltip.model:SetPortraitZoom(0)
+	--IDR.modelTooltip.model:RefreshCamera()
+	--IDR.modelTooltip.model:SetPortraitZoom(0)
 	IDR.modelTooltip.model:SetPosition(0, 0, 0)
 	item = select(9, GetItemInfo(item))
 	if item == "INVTYPE_CLOAK" then
@@ -508,7 +511,7 @@ local function modelPreview(item)
 	item = itemModelSettings[item] and itemModelSettings[item][playerModelFileIndex[(IDR.modelTooltip.model:GetModel() or ""):lower()]]
 	if item then
 		local scale = IDR.modelTooltip.model:GetModelScale() * UIParent:GetEffectiveScale()
-		IDR.modelTooltip.model:SetPortraitZoom(item[1])
+		--IDR.modelTooltip.model:SetPortraitZoom(item[1])
 		IDR.modelTooltip.model:SetPosition(0, item[2] * scale, item[3] * scale)
 	end
 	IDR.modelTooltip.model:SetAlpha(1)
@@ -611,25 +614,27 @@ function IDR:UpdateDetailItems()
 		if item then
 			visibleItem[item] = i
 			btn:SetID(item)
-			btn:SetNormalTexture(GetItemIcon(item))
-			if hasItemCache[item] then
-				updateDetailItem(btn)
-			else
-				btn:SetText("#"..item)
-				btn.noItem = true
-				LBICR:RegisterItemCache(item, setDetailItem)
-			end
-			btn:Show()
-			if btn:IsMouseOver() and GetMouseFocus() == btn then
-				btn:GetScript("OnEnter")(btn)
+			local itemIcon = GetItemIcon(item)
+			if itemIcon then
+				btn:SetNormalTexture(itemIcon)
+				if hasItemCache[item] then
+					updateDetailItem(btn)
+				else
+					btn:SetText("#"..item)
+					btn.noItem = true
+					LBICR:RegisterItemCache(item, setDetailItem)
+				end
+				btn:Show()
+				if btn:IsMouseOver() and GetMouseFocus() == btn then
+					btn:GetScript("OnEnter")(btn)
+				end
 			end
 		else
 			btn:Hide()
 			btn.noItem = nil
 		end
 	end
-	-- TODO : Sunmudang
-	--FauxScrollFrame_Update(IDR.detailItemScroll, #detailItems, #IDR.detailItems, 17)
+	FauxScrollFrame_Update(IDR.detailItemScroll, #detailItems, #IDR.detailItems, 17)
 	IDR:HideAllDropdown()
 end
 
@@ -676,17 +681,20 @@ function IDR:UpdateItemListMenuItems()
 		if item then
 			visibleItem2[item] = i
 			btn:SetID(item)
-			btn:SetNormalTexture(GetItemIcon(item))
-			if hasItemCache2[item] then
-				updateDetailItem(btn)
-			else
-				btn:SetText("#"..item)
-				btn.noItem = true
-				LBICR:RegisterItemCache(item, setMenuItem)
-			end
-			btn:Show()
-			if btn:IsMouseOver() and GetMouseFocus() == btn then
-				btn:GetScript("OnEnter")(btn)
+			local itemIcon = GetItemIcon(item)
+   			if itemIcon then
+				btn:SetNormalTexture(itemIcon)
+				if hasItemCache2[item] then
+					updateDetailItem(btn)
+				else
+					btn:SetText("#"..item)
+					btn.noItem = true
+					LBICR:RegisterItemCache(item, setMenuItem)
+				end
+				btn:Show()
+				if btn:IsMouseOver() and GetMouseFocus() == btn then
+					btn:GetScript("OnEnter")(btn)
+				end
 			end
 		else
 			btn:Hide()

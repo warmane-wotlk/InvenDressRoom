@@ -16500,7 +16500,7 @@ Search.lua
 ## X-NoTransmogrifyItem-11411: 1
 ## X-NoTransmogrifyItem-13915: 1
 ## X-NoTransmogrifyItem-13905: 1
-## X-DB-PvE: 30
+## X-DB-PvE: 26
 ## X-DB-PvE-1: 시작 아이템
 ## X-DB-PvE-2: 시작 아이템 (상급)
 ## X-DB-PvE-3: 아제로스 던전
@@ -16787,7 +16787,7 @@ Search.lua
 ## X-DB-PvE_DEATHKNIGHT_28: 65186,65188,65184,65185,65187
 ## X-DB-PvE_DEATHKNIGHT_29: 70954,70951,70955,70953,70952
 ## X-DB-PvE_DEATHKNIGHT_30: 71483,71485,71481,71482,71484
-## X-DB-PvP: 20
+## X-DB-PvP: 14
 ## X-DB-PvP-1: 부사령관 (호드)
 ## X-DB-PvP-2: 부사령관 (얼라)
 ## X-DB-PvP-3: 장군 (호드)

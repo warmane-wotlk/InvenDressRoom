@@ -14,7 +14,7 @@ local i, text, id
 local search, hasItemCache, visibleItem = {}, {}, {}
 local LBICR = LibStub("LibBlueItemCacheReceiver-1.0")
 
-local searchBox = CreateFrame("EditBox", IDR:GetName().."SearchBox", IDR)
+local searchBox = CreateFrame("EditBox", IDR:GetName().."SearchBox", IDR, "SearchBoxTemplate")
 searchBox:SetFrameLevel(IDR:GetFrameLevel() + 1)
 searchBox:SetSize(0, 20)
 searchBox:SetPoint("TOPRIGHT", -8, -33)
@@ -75,7 +75,7 @@ end)
 
 local function clearSearchBox()
 	LBICR:UnregisterAllItemCache(setMenuItem)
-	searchBox:SetText(SEARCH)
+	--searchBox:SetText(SEARCH)
 	searchBox:ClearFocus()
 	wipe(search)
 	wipe(hasItemCache)
@@ -101,17 +101,20 @@ function IDR:UpdateSearchItems()
 		if item then
 			visibleItem[item] = i
 			btn:SetID(item)
-			btn:SetNormalTexture(GetItemIcon(item))
-			if hasItemCache[item] then
-				updateDetailItem(btn)
-			else
-				btn:SetText("#"..item)
-				btn.noItem = true
-				LBICR:RegisterItemCache(item, setMenuItem)
-			end
-			btn:Show()
-			if btn:IsMouseOver() and GetMouseFocus() == btn then
-				btn:GetScript("OnEnter")(btn)
+			local itemIcon = GetItemIcon(item)
+			if itemIcon then
+				btn:SetNormalTexture(itemIcon)
+				if hasItemCache[item] then
+					updateDetailItem(btn)
+				else
+					btn:SetText("#"..item)
+					btn.noItem = true
+					LBICR:RegisterItemCache(item, setMenuItem)
+				end
+				btn:Show()
+				if btn:IsMouseOver() and GetMouseFocus() == btn then
+					btn:GetScript("OnEnter")(btn)
+				end
 			end
 		else
 			btn:Hide()

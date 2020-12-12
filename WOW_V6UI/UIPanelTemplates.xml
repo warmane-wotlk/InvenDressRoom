@@ -1,0 +1,134 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <EditBox name="SearchBoxTemplate" inherits="InputBoxInstructionsTemplate" autoFocus="false" virtual="true">
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentSearchIcon" file="Interface\Common\UI-Searchbox-Icon" parentKey="searchIcon">
+                    <Size x="14" y="14"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="0" y="-2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentClearButton" parentKey="clearButton" hidden="true">
+                <Size x="17" y="17"/>
+                <Anchors>
+                    <Anchor point="RIGHT" x="-3" y="0"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture file="Interface\FriendsFrame\ClearBroadcastIcon" alpha="0.5" parentKey="texture">
+                            <Size>
+                                <AbsDimension x="17" y="17"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnEnter>
+                        self.texture:SetAlpha(1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        self.texture:SetAlpha(0.5);
+                    </OnLeave>
+                    <OnMouseDown>
+                        if self:IsEnabled() then
+                            self.texture:SetPoint("TOPLEFT", self, "TOPLEFT", 1, -1);
+                        end
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        self.texture:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+                    </OnMouseUp>
+                    <OnClick function="SearchBoxTemplateClearButton_OnClick"/>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad function="SearchBoxTemplate_OnLoad"/>
+            <OnEscapePressed function="EditBox_ClearFocus"/>
+            <OnEnterPressed function="EditBox_ClearFocus"/>
+            <OnEditFocusLost function="SearchBoxTemplate_OnEditFocusLost"/>
+            <OnEditFocusGained function="SearchBoxTemplate_OnEditFocusGained"/>
+            <OnTextChanged function="SearchBoxTemplate_OnTextChanged"/>
+        </Scripts>
+    </EditBox>
+
+    <Texture name="Char-Stat-Bottom" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="169" y="46"/>  
+        <TexCoords left="0.00390625" right="0.66406250" top="0.00781250" bottom="0.36718750"/>  
+    </Texture>
+    <Texture name="Char-Stat-Minimized" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="169" y="14"/>  
+        <TexCoords left="0.00390625" right="0.66406250" top="0.38281250" bottom="0.49218750"/>  
+    </Texture>
+    <Texture name="Char-Stat-Top" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="169" y="9"/>   
+        <TexCoords left="0.00390625" right="0.66406250" top="0.50781250" bottom="0.57812500"/>  
+    </Texture>
+    <Texture name="Char-RightSlot" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="50" y="44"/>   
+        <TexCoords left="0.00390625" right="0.19921875" top="0.59375000" bottom="0.93750000"/>  
+    </Texture>
+    <Texture name="Char-Stat-Minus" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="3"/> 
+        <TexCoords left="0.00390625" right="0.03125000" top="0.95312500" bottom="0.97656250"/>  
+    </Texture>
+    <Texture name="Char-LeftSlot" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="49" y="44"/>   
+        <TexCoords left="0.20703125" right="0.39843750" top="0.59375000" bottom="0.93750000"/>  
+    </Texture>
+    <Texture name="Char-Corner-LowerRight" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="7"/> 
+        <TexCoords left="0.40625000" right="0.43359375" top="0.59375000" bottom="0.64843750"/>  
+    </Texture>
+    <Texture name="Char-Corner-LowerLeft" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="7"/> 
+        <TexCoords left="0.40625000" right="0.43359375" top="0.66406250" bottom="0.71875000"/>  
+    </Texture>
+    <Texture name="Char-Corner-UpperRight" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="7"/> 
+        <TexCoords left="0.40625000" right="0.43359375" top="0.73437500" bottom="0.78906250"/>  
+    </Texture>
+    <Texture name="Char-Corner-UpperLeft" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="7"/> 
+        <TexCoords left="0.40625000" right="0.43359375" top="0.80468750" bottom="0.85937500"/>  
+    </Texture>
+    <Texture name="Char-Stat-Plus" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="7"/> 
+        <TexCoords left="0.40625000" right="0.43359375" top="0.87500000" bottom="0.92968750"/>  
+    </Texture>
+    <Texture name="Char-BottomSlot" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="42" y="53"/>   
+        <TexCoords left="0.67187500" right="0.83593750" top="0.00781250" bottom="0.42187500"/>  
+    </Texture>
+    <Texture name="Char-Slot-Bottom-Right" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="7" y="54"/>    
+        <TexCoords left="0.67187500" right="0.69921875" top="0.43750000" bottom="0.85937500"/>  
+    </Texture>
+    <Texture name="Char-Slot-Bottom-Left" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Parts" virtual="true" >
+        <Size x="6" y="54"/>    
+        <TexCoords left="0.70703125" right="0.73046875" top="0.43750000" bottom="0.85937500"/>  
+    </Texture>
+
+    <Texture name="Char-Inner-Bottom" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Horizontal" horizTile="true" virtual="true">
+        <Size x="32" y="5"/>    
+        <TexCoords left="0.00000000" right="1.00000000" top="0.06250000" bottom="0.37500000"/>  
+    </Texture>
+    <Texture name="Char-Inner-Top" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Horizontal" horizTile="true" virtual="true">
+        <Size x="32" y="5"/>    
+        <TexCoords left="0.00000000" right="1.00000000" top="0.50000000" bottom="0.81250000"/>  
+    </Texture>
+    <Texture name="Char-Inner-Left" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Vertical" vertTile="true" virtual="true">
+        <Size x="5" y="32"/>    
+        <TexCoords left="0.06250000" right="0.37500000" top="0.00000000" bottom="1.00000000"/>  
+    </Texture>
+    <Texture name="Char-Inner-Right" file="Interface\AddOns\WOW_V6UI\Texture\CharacterFrame\Char-Paperdoll-Vertical" vertTile="true" virtual="true">
+        <Size x="5" y="32"/>    
+        <TexCoords left="0.50000000" right="0.81250000" top="0.00000000" bottom="1.00000000"/>  
+    </Texture>    
+</Ui>

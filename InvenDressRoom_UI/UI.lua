@@ -9,7 +9,7 @@ local tinsert = _G.table.insert
 local ceil = _G.math.ceil
 local GetAddOnMetadata = _G.GetAddOnMetadata
 
---ButtonFrameTemplate_HideButtonBar(IDR)
+ButtonFrameTemplate_HideButtonBar(IDR)
 IDR:SetPoint("CENTER", 0, 0)
 IDR:SetSize(852, 433)
 IDR:SetScale(IDR.db.scale)
@@ -19,19 +19,19 @@ IDR:SetClampedToScreen(true)
 IDR:RegisterForDrag("LeftButton", "RightButton")
 IDR:SetScript("OnDragStart", IDR.StartMoving)
 IDR:SetScript("OnDragStop", IDR.StopMovingOrSizing)
---IDR.portrait:SetPoint("TOPLEFT", -5, 8)
---SetPortraitToTexture(IDR.portrait, IDR.icon)
---IDR.TitleText:SetFormattedText("Inven Dress Room v%s", GetAddOnMetadata(addOnName, "Version"))
+IDR.portrait:SetPoint("TOPLEFT", -5, 8)
+SetPortraitToTexture(IDR.portrait, IDR.icon)
+IDR.TitleText:SetFormattedText("Inven Dress Room v%s", GetAddOnMetadata(addOnName, "Version"))
 
 local function setCustomRace(self)
 	self:SetUnit("player")
 end
 
 local function enableCustomRace(self)
+	setCustomRace(self)
 	if not self.SetCustomRace then
 		self.SetCustomRace = setCustomRace
-	end
-	setCustomRace(self)
+	end	
 end
 
 local function loadingAnimationOnShow(self)
@@ -48,22 +48,22 @@ local function createLoadingAnimation(parent)
 	loading:Hide()
 	loading:SetSize(120, 120)
 	local region = loading:CreateTexture(nil, "BACKGROUND")
-	region:SetTexture("Interface\\Common\\StreamBackground")
+	region:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Common\\StreamBackground")
 	region:SetVertexColor(0, 1, 0)
 	region:SetAllPoints()
 	region = loading:CreateTexture(nil, "ARTWORK")
-	region:SetTexture("Interface\\Common\\StreamFrame")
+	region:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Common\\StreamFrame")
 	region:SetAllPoints()
 	parent = CreateFrame("Frame", nil, loading)
 	parent:SetAllPoints()
 	parent:SetAlpha(0.5)
 	parent:SetFrameLevel(loading:GetFrameLevel())
 	region = parent:CreateTexture(nil, "BORDER")
-	region:SetTexture("Interface\\COMMON\\StreamCircle")
+	region:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Common\\StreamCircle")
 	region:SetVertexColor(0, 1, 0)
 	region:SetAllPoints()
 	region = parent:CreateTexture(nil, "OVERLAY", 1)
-	region:SetTexture("Interface\\COMMON\\StreamSpark")
+	region:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Common\\StreamSpark")
 	region:SetAllPoints()
 	parent = parent:CreateAnimationGroup()
 	parent:SetLooping("REPEAT")
@@ -204,66 +204,6 @@ else
 	end)
 end
 
-local function createRotateButton(self, parent)
-	local rotateleftbutton = CreateFrame("Button", nil, parent)
-	rotateleftbutton:SetPoint("CENTER", parent, "CENTER", 220, 220)
-	rotateleftbutton:SetWidth(200)
-	rotateleftbutton:SetHeight(50)
-	
-	rotateleftbutton:SetText("Left Button")
-	rotateleftbutton:SetNormalFontObject("GameFontNormal")
-
-	local ntex = rotateleftbutton:CreateTexture()
-	ntex:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
-	ntex:SetTexCoord(0, 0.625, 0, 0.6875)
-	ntex:SetAllPoints()	
-	rotateleftbutton:SetNormalTexture(ntex)
-	
-	local htex = rotateleftbutton:CreateTexture()
-	htex:SetTexture("Interface/Buttons/UI-Panel-Button-Highlight")
-	htex:SetTexCoord(0, 0.625, 0, 0.6875)
-	htex:SetAllPoints()
-	rotateleftbutton:SetHighlightTexture(htex)
-	
-	local ptex = rotateleftbutton:CreateTexture()
-	ptex:SetTexture("Interface/Buttons/UI-Panel-Button-Down")
-	ptex:SetTexCoord(0, 0.625, 0, 0.6875)
-	ptex:SetAllPoints()
-	rotateleftbutton:SetPushedTexture(ptex)
-
-
-	local rotaterightbutton = CreateFrame("Button", nil, parent)
-	rotaterightbutton:SetPoint("CENTER", parent, "CENTER", 100, 50)
-	rotaterightbutton:SetWidth(200)
-	rotaterightbutton:SetHeight(50)
-	
-	rotaterightbutton:SetText("Right Button")
-	rotaterightbutton:SetNormalFontObject("GameFontNormal")
-
-	local ntex = rotaterightbutton:CreateTexture()
-	ntex:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
-	ntex:SetTexCoord(0, 0.625, 0, 0.6875)
-	ntex:SetAllPoints()	
-	rotaterightbutton:SetNormalTexture(ntex)
-	
-	local htex = rotaterightbutton:CreateTexture()
-	htex:SetTexture("Interface/Buttons/UI-Panel-Button-Highlight")
-	htex:SetTexCoord(0, 0.625, 0, 0.6875)
-	htex:SetAllPoints()
-	rotaterightbutton:SetHighlightTexture(htex)
-	
-	local ptex = rotaterightbutton:CreateTexture()
-	ptex:SetTexture("Interface/Buttons/UI-Panel-Button-Down")
-	ptex:SetTexCoord(0, 0.625, 0, 0.6875)
-	ptex:SetAllPoints()
-	rotaterightbutton:SetPushedTexture(ptex)	
-
-	_G[self:GetName().."RotateLeftButton"] = rotateleftbutton
-	_G[self:GetName().."RotateRightButton"] = rotaterightbutton
-end
-createRotateButton(modelFrame)
-
-
 modelFrame.BackgroundTopLeft = modelFrame:CreateTexture(nil, "BACKGROUND")
 modelFrame.BackgroundTopLeft:SetPoint("TOPLEFT", 0, 0)
 modelFrame.BackgroundTopLeft:SetSize(212, 245)
@@ -284,35 +224,35 @@ modelFrame.BackgroundOverlay = modelFrame:CreateTexture(nil, "BORDER")
 modelFrame.BackgroundOverlay:SetPoint("TOPLEFT", modelFrame.BackgroundTopLeft, 0, 0)
 modelFrame.BackgroundOverlay:SetPoint("BOTTOMRIGHT", modelFrame.BackgroundBotRight, 0, 52)
 modelFrame.BackgroundOverlay:SetTexture(0, 0, 0)
-local borderTopLeft = modelFrame:CreateTexture(nil, "OVERLAY")
+local borderTopLeft = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Corner-UpperLeft")
 borderTopLeft:ClearAllPoints()
 borderTopLeft:SetPoint("TOPLEFT", modelFrame.BackgroundOverlay, -2, 2)
-local borderTopRight = modelFrame:CreateTexture(nil, "OVERLAY")
+local borderTopRight = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Corner-UpperRight")
 borderTopRight:ClearAllPoints()
 borderTopRight:SetPoint("TOPRIGHT", modelFrame.BackgroundOverlay, 2, 2)
-local borderBotLeft = modelFrame:CreateTexture(nil, "OVERLAY")
+local borderBotLeft = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Corner-LowerLeft")
 borderBotLeft:ClearAllPoints()
 borderBotLeft:SetPoint("BOTTOMLEFT", modelFrame.BackgroundOverlay, -2, -2)
-local borderBotRight = modelFrame:CreateTexture(nil, "OVERLAY")
+local borderBotRight = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Corner-LowerRight")
 borderBotRight:ClearAllPoints()
 borderBotRight:SetPoint("BOTTOMRIGHT", modelFrame.BackgroundOverlay, 2, -2)
-local borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY")
+local borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Inner-Left")
 borderMiddle:ClearAllPoints()
 borderMiddle:SetPoint("TOPLEFT", borderTopLeft, "BOTTOMLEFT", -1, 0)
 borderMiddle:SetPoint("BOTTOMLEFT", borderBotLeft, "TOPLEFT", -1, 0)
-borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY")
+borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Inner-Right")
 borderMiddle:ClearAllPoints()
 borderMiddle:SetPoint("TOPRIGHT", borderTopRight, "BOTTOMRIGHT", 1, 0)
 borderMiddle:SetPoint("BOTTOMRIGHT", borderBotRight, "TOPRIGHT", 1, 0)
-borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY")
+borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Inner-Top")
 borderMiddle:ClearAllPoints()
 borderMiddle:SetPoint("TOPLEFT", borderTopLeft, "TOPRIGHT", 0, 1)
 borderMiddle:SetPoint("TOPRIGHT", borderTopRight, "TOPLEFT", 0, 1)
-borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY")
+borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Inner-Bottom")
 borderMiddle:ClearAllPoints()
 borderMiddle:SetPoint("BOTTOMLEFT", borderBotLeft, "BOTTOMRIGHT", 0, -1)
 borderMiddle:SetPoint("BOTTOMRIGHT", borderBotRight, "BOTTOMLEFT", 0, -1)
-borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY")
+borderMiddle = modelFrame:CreateTexture(nil, "OVERLAY", "Char-Inner-Bottom")
 borderMiddle:ClearAllPoints()
 borderMiddle:SetPoint("BOTTOMLEFT", borderBotLeft, "BOTTOMLEFT", -4, -4)
 borderMiddle:SetPoint("BOTTOMRIGHT", borderBotRight, "BOTTOMRIGHT", 4, -4)
@@ -365,13 +305,13 @@ do
 			visible:SetID(0)
 			visible:SetFrameLevel(frameLevel + 3)
 			visible:SetAllPoints()
-			visible:SetNormalTexture("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent")
+			visible:SetNormalTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent")
 			visible:SetAlpha(0.75)
 			visible:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 			visible:SetScript("OnReceiveDrag", onReceiveDragItem)
 			visible:SetScript("OnClick", onReceiveDragItem)
 		end
-		visible = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND")
+		visible = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND", (bg == "Char-Slot-Bottom-Left" or bg == "Char-Slot-Bottom-Right") and "Char-BottomSlot" or bg, -1)
 		visible:ClearAllPoints()
 		if bg == "Char-LeftSlot" then
 			visible:SetPoint("TOPLEFT", -4, 0)
@@ -381,12 +321,12 @@ do
 			visible:SetPoint("TOPLEFT", -4, 8)
 		elseif bg == "Char-Slot-Bottom-Left" then
 			visible:SetPoint("TOPLEFT", -4, 8)
-			bg = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND")
+			bg = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND", bg)
 			bg:ClearAllPoints()
 			bg:SetPoint("TOPRIGHT", visible, "TOPLEFT", 0, 0)
 		elseif bg == "Char-Slot-Bottom-Right" then
 			visible:SetPoint("TOPLEFT", -4, 8)
-			bg = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND")
+			bg = IDR.itemSlots[slot]:CreateTexture(nil, "BACKGROUND", bg)
 			bg:ClearAllPoints()
 			bg:SetPoint("TOPLEFT", visible, "TOPRIGHT", 0, 0)
 		end
@@ -505,13 +445,13 @@ borderMiddle:SetPoint("BOTTOMRIGHT", borderBotLeft, "TOPRIGHT", 0, 0)
 borderMiddle:SetWidth(16)
 borderMiddle:SetTexCoord(0, 0.25, 0.29296875, 1)
 
-local categoryScroll = CreateFrame("ScrollFrame", addOnName.."CategoryScrollFrame", IDR, "FauxScrollFrameTemplate")
+local categoryScroll = CreateFrame("ScrollFrame", addOnName.."CategoryScrollFrame", IDR, "ListScrollFrameTemplate")
 categoryScroll:SetFrameLevel(frameLevel + 3)
 categoryScroll:SetPoint("TOPLEFT", borderTopLeft, "TOPRIGHT", -3, -8)
 categoryScroll:SetPoint("BOTTOMLEFT", borderBotLeft, "BOTTOMRIGHT", -3, 4)
 categoryScroll:SetWidth(143)
 categoryScroll:SetHitRectInsets(0, -28, 0, 0)
---_G[categoryScroll:GetName().."ScrollChildFrame"]:SetSize(1, 1)
+_G[categoryScroll:GetName().."ScrollChildFrame"]:SetSize(1, 1)
 
 borderTopLeft = IDR:CreateTexture(nil, "BORDER")
 borderTopLeft:SetTexture("Interface\\AddOns\\InvenCraftInfo2_UI\\Texture\\VerticalLine")
@@ -531,10 +471,10 @@ borderMiddle:SetPoint("TOPLEFT", borderTopLeft, "BOTTOMLEFT", 0, 0)
 borderMiddle:SetPoint("BOTTOMRIGHT", borderBotLeft, "TOPRIGHT", 0, 0)
 borderMiddle:SetTexCoord(0, 0.25, 0.29296875, 1)
 
---[[
 local function fixScrollBarBorder(scroll)
 	scroll:DisableDrawLayer("BACKGROUND")
 	scroll = _G[scroll:GetName().."ScrollBar"]
+	if not scroll then return end
 	borderTopLeft = scroll:CreateTexture(nil, "BACKGROUND")
 	borderTopLeft:SetTexture("Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar")
 	borderTopLeft:SetTexCoord(0, 0.40625, 0, 0.25)
@@ -553,7 +493,6 @@ local function fixScrollBarBorder(scroll)
 end
 
 fixScrollBarBorder(categoryScroll)
---]]
 
 local mainCategory = {
 	"2HWEAPON",
@@ -845,7 +784,7 @@ for i = 1, 32 do
 	borderMiddle = modelSlots[i]:CreateTexture(nil, "BACKGROUND")
 	borderMiddle:SetSize(43, 43)
 	borderMiddle:SetPoint("CENTER", 0, 0)
-	borderMiddle:SetTexture("Interface\\Spellbook\\Spellbook-Mounts")
+	borderMiddle:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Spellbook\\Spellbook-Mounts")
 	borderMiddle:SetTexCoord(0.71093750, 0.79492188, 0.00390625, 0.17187500)
 	borderMiddle:SetAlpha(0.5)
 	borderMiddle:SetDesaturated(true)
@@ -892,13 +831,13 @@ borderMiddle:SetPoint("TOP", categoryScroll, "TOP", 0, 0)
 borderMiddle:SetPoint("BOTTOMLEFT", modelSlots[1], "TOPLEFT", -2, 6)
 borderMiddle:SetPoint("RIGHT", modelSlots[4], "RIGHT", 2, 0)
 borderMiddle:SetTexture(0.2, 0.2, 0.2, 0.7)
-borderTopLeft = CreateFrame("Frame", addOnName.."ShadowOverlay", IDR)
+borderTopLeft = CreateFrame("Frame", addOnName.."ShadowOverlay", IDR, "ShadowOverlayTemplate")
 borderTopLeft:SetFrameLevel(frameLevel + 1)
 borderTopLeft:SetPoint("TOPLEFT", borderMiddle, "TOPLEFT", 2, -2)
 borderTopLeft:SetPoint("BOTTOMRIGHT", borderMiddle, "BOTTOMRIGHT", -2, 2)
 borderMiddle = borderTopLeft:CreateTexture(nil, "BACKGROUND")
 borderMiddle:SetAllPoints()
-borderMiddle:SetTexture("Interface\\Spellbook\\Spellbook-Mounts")
+borderMiddle:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\Spellbook\\Spellbook-Mounts")
 borderMiddle:SetTexCoord(0.03515625, 0.5859375, 0.0703125, 0.83203125)
 
 IDR.detailModelFrame = createDressUpModel(addOnName.."DetailModelFrame", borderTopLeft)
@@ -950,7 +889,7 @@ for i = 1, 10 do
 	end
 end
 
-IDR.detailItemScroll = CreateFrame("ScrollFrame", addOnName.."ItemScrollFrame", IDR)
+IDR.detailItemScroll = CreateFrame("ScrollFrame", addOnName.."ItemScrollFrame", IDR, "ListScrollFrameTemplate")
 IDR.detailItemScroll:SetFrameLevel(frameLevel + 2)
 IDR.detailItemScroll:SetPoint("TOPLEFT", borderTopLeft, "TOPRIGHT", 6, 2)
 IDR.detailItemScroll:SetPoint("BOTTOM", modelSlots[1], "TOP", 0, 6)
@@ -966,8 +905,8 @@ IDR.detailItemScroll:SetScript("OnVerticalScroll", function(self, offset)
 	FauxScrollFrame_OnVerticalScroll(self, offset, 17, IDR.UpdateDetailItems)
 end)
 
---fixScrollBarBorder(IDR.detailItemScroll)
---_G[IDR.detailItemScroll:GetName().."ScrollChildFrame"]:SetSize(1, 1)
+fixScrollBarBorder(IDR.detailItemScroll)
+_G[IDR.detailItemScroll:GetName().."ScrollChildFrame"]:SetSize(1, 1)
 
 local equipLocBackgrounds = {
 	INVTYPE_2HWEAPON = select(2, GetInventorySlotInfo("MainHandSlot")),
@@ -1104,7 +1043,7 @@ do
 	end
 
 	local function createScroll(itemListMenu, level, onScroll)
-		itemListMenu.scroll = CreateFrame("ScrollFrame", itemListMenu:GetName().."ItemScrollFrame", itemListMenu)
+		itemListMenu.scroll = CreateFrame("ScrollFrame", itemListMenu:GetName().."ItemScrollFrame", itemListMenu, "ListScrollFrameTemplate")
 		itemListMenu.scroll:SetFrameLevel(level)
 		itemListMenu.scroll:SetPoint("TOPLEFT", 12, -12)
 		itemListMenu.scroll:SetPoint("BOTTOMRIGHT", -33, 11)
@@ -1112,7 +1051,7 @@ do
 		itemListMenu.scroll:SetScript("OnShow", scrollOnShow)
 		itemListMenu.scroll:SetScript("OnHide", scrollOnHide)
 		itemListMenu.scroll:SetScript("OnVerticalScroll", onScroll)
---		fixScrollBarBorder(itemListMenu.scroll)
+		fixScrollBarBorder(itemListMenu.scroll)
 	end
 
 	local function createItems(itemListMenu, num, level, offset)

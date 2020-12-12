@@ -272,17 +272,20 @@ function IDR:UpdateFavoriteList()
 		if item then
 			visibleItem[item] = i
 			btn:SetID(item)
-			btn:SetNormalTexture(GetItemIcon(item))
-			if hasItemCache[item] then
-				updateDetailItem(btn)
-			else
-				btn:SetText("#"..item)
-				btn.noItem = true
-				LBICR:RegisterItemCache(item, setDetailItem)
-			end
-			btn:Show()
-			if btn:IsMouseOver() and GetMouseFocus() == btn then
-				btn:GetScript("OnEnter")(btn)
+			local itemIcon = GetItemIcon(item)
+			if itemIcon then
+				btn:SetNormalTexture(itemIcon)
+				if hasItemCache[item] then
+					updateDetailItem(btn)
+				else
+					btn:SetText("#"..item)
+					btn.noItem = true
+					LBICR:RegisterItemCache(item, setDetailItem)
+				end
+				btn:Show()
+				if btn:IsMouseOver() and GetMouseFocus() == btn then
+					btn:GetScript("OnEnter")(btn)
+				end
 			end
 		else
 			btn:Hide()
