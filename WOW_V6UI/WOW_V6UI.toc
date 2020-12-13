@@ -2,7 +2,7 @@
 ## Title: WOW_V6UI from 6.0.2
 ## Notes: This is reqired for 인벤 드레스 룸 - 아이템 룩 살펴보기
 ## Author: Sunmudang@Style
-## Version: 1.0 Sunmudang v1
+## Version: 1.0 Sunmudang v1.1
 
 SharedUIPanelTemplates.lua
 UIPanelTemplates.lua

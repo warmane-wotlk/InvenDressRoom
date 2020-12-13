@@ -396,7 +396,8 @@ function InputBoxInstructions_OnTextChanged(self)
 	self.Instructions:SetShown(self:GetText() == "")
 end
 
-
+-- use original from UIPanelTemplates.lua in WOW client.
+--[[
 -- functions to manage tab interfaces where only one tab of a group may be selected
 function PanelTemplates_Tab_OnClick(self, frame)
 	PanelTemplates_SetTab(frame, self:GetID())
@@ -585,3 +586,4 @@ function PanelTemplates_SetDisabledTabState(tab)
 	middleDisabled:Hide();
 	rightDisabled:Hide();
 end
+--]]
