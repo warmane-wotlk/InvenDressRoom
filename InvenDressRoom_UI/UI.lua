@@ -1091,7 +1091,7 @@ do
 		itemListMenu:SetSize(230, title and 207 or 193)
 		level = frameLevel + level
 		itemListMenu:SetFrameLevel(level)
-		--itemListMenu:SetToplevel(true)
+		itemListMenu:SetToplevel(true)
 		itemListMenu:EnableMouse(true)
 		itemListMenu:SetClampedToScreen(true)
 		itemListMenu:SetScript("OnHide", itemListMenu.Hide)
