@@ -2,7 +2,7 @@
 ## Title: Inven Dress Room
 ## Notes: 인벤 드레스 룸 - 아이템 룩 살펴보기
 ## Author: Inven - InTheBlue, Sunmudang@Style
-## Version: 1.0 Sunmudang v1
+## Version: 1.0 Sunmudang v1.1
 ## X-Website: style@warmane
 ## SavedVariables: InvenDressRoomDB
 ## Dependencies: WOW_V6UI
