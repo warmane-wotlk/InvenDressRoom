@@ -33,7 +33,7 @@ function MagicButton_OnLoad(self)
 				relativeTo.RightSeparator = self.LeftSeparator;
 			end
 			
-			self.LeftSeparator:SetTexture("Interface\AddOns\WOW_V6UI\Texture\FrameGeneral\UI-Frame");
+			self.LeftSeparator:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\FrameGeneral\\UI-Frame");
 			self.LeftSeparator:SetTexCoord(0.00781250, 0.10937500, 0.75781250, 0.95312500);
 			self.LeftSeparator:SetWidth(13);
 			self.LeftSeparator:SetHeight(25);
@@ -56,7 +56,7 @@ function MagicButton_OnLoad(self)
 				relativeTo.LeftSeparator = self.RightSeparator;
 			end
 			
-			self.RightSeparator:SetTexture("Interface\AddOns\WOW_V6UI\Texture\FrameGeneral\UI-Frame");
+			self.RightSeparator:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\FrameGeneral\\UI-Frame");
 			self.RightSeparator:SetTexCoord(0.00781250, 0.10937500, 0.75781250, 0.95312500);
 			self.RightSeparator:SetWidth(13);
 			self.RightSeparator:SetHeight(25);
@@ -86,7 +86,7 @@ function MagicButton_OnLoad(self)
 		if (not self.LeftSeparator) then
 			-- Add a Left border
 			self.LeftSeparator = self:CreateTexture(self:GetName() and self:GetName().."_LeftSeparator" or nil, "BORDER");
-			self.LeftSeparator:SetTexture("Interface\AddOns\WOW_V6UI\Texture\FrameGeneral\UI-Frame");
+			self.LeftSeparator:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\FrameGeneral\\UI-Frame");
 			self.LeftSeparator:SetTexCoord(0.24218750, 0.32812500, 0.63281250, 0.82812500);
 			self.LeftSeparator:SetWidth(11);
 			self.LeftSeparator:SetHeight(25);
@@ -99,7 +99,7 @@ function MagicButton_OnLoad(self)
 		if (not self.RightSeparator) then
 			-- Add a Right border
 			self.RightSeparator = self:CreateTexture(self:GetName() and self:GetName().."_RightSeparator" or nil, "BORDER");
-			self.RightSeparator:SetTexture("Interface\AddOns\WOW_V6UI\Texture\FrameGeneral\UI-Frame");
+			self.RightSeparator:SetTexture("Interface\\AddOns\\WOW_V6UI\\Texture\\FrameGeneral\\UI-Frame");
 			self.RightSeparator:SetTexCoord(0.90625000, 0.99218750, 0.00781250, 0.20312500);
 			self.RightSeparator:SetWidth(11);
 			self.RightSeparator:SetHeight(25);
