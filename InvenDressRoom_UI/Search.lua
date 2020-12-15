@@ -46,20 +46,28 @@ searchBox:SetScript("OnTextChanged", function(self, name)
 	if name then
 		name = self:GetText()
 		name = tostring((name or "")):trim():gsub("[%$%%%^%(%)%-%+%.%[%]]", "%%%1"):lower()
-		if name ~= "" and name ~= SEARCH and not name:find("_") then
-			name = "_[^_]-"..name.."[^_]-_(%d+)_"
-			i, text = 1, GetAddOnMetadata(addOnName, "X-S1")
-			while text do
-				id = text:match(name)
-				while id do
-					tinsert(search, tonumber(id))
-					text = text:gsub(name, "_", 1)
+		
+		-- allow to search with #id like #51201
+		local rule = "^#(%d+)$"
+		id = name:match(rule)
+		if id then
+			tinsert(search, tonumber(id))
+		else
+			if name ~= "" and name ~= SEARCH and not name:find("_") then
+				name = "_[^_]-"..name.."[^_]-_(%d+)_"
+				i, text = 1, GetAddOnMetadata(addOnName, "X-S1")
+				while text do
 					id = text:match(name)
+					while id do
+						tinsert(search, tonumber(id))
+						text = text:gsub(name, "_", 1)
+						id = text:match(name)
+					end
+					i = i + 1
+					text = GetAddOnMetadata(addOnName, "X-S"..i)
 				end
-				i = i + 1
-				text = GetAddOnMetadata(addOnName, "X-S"..i)
+				i, text, id = nil
 			end
-			i, text, id = nil
 		end
 		if #search > 0 then
 			sort(search, sortRev)
